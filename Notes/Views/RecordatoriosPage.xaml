@@ -1,0 +1,37 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.Views.RecordatoriosPage"
+             xmlns:viewmodels="clr-namespace:Notes.ViewModels"
+             Title="Recordatorios">
+
+    <ContentPage.BindingContext>
+        <viewmodels:RecordatoriosViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10">
+        <Button Text="Agregar Recordatorio"
+                Command="{Binding AgregarCommand}" />
+
+        <CollectionView ItemsSource="{Binding Recordatorios}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Eliminar"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarCommand}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="10">
+                            <Label Text="{Binding Texto}" />
+                            <Label Text="{Binding FechaHora, StringFormat='{}{0:hh\\:mm}'}" FontSize="12" />
+                            <Label Text="{Binding Activo}" FontSize="12" />
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
