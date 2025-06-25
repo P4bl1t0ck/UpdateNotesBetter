@@ -6,21 +6,21 @@
              Title="Pablo Montalvo."
              NavigatedTo="ContentPage_NavigatedTo"
              x:DataType="viewModels:NotesViewModel">
+    <ContentPage.BindingContext>
+        <viewModels:NotesViewModel />
+    </ContentPage.BindingContext>
     <!-- Add an item to the toolbar -->
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding NewCommand}" IconImageSource="{FontImage Glyph='+', Color=Black, Size=22}" />
     </ContentPage.ToolbarItems>
-    <PropertyGroup>
-        <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
-    </PropertyGroup>
     <!-- Display notes in a list -->
     <CollectionView x:Name="notesCollection"
-                        ItemsSource="{Binding Notes}"
+                        ItemsSource="{Binding AllNotes}"
                         Margin="20"
                         SelectionMode="Single"
                         SelectionChangedCommand="{Binding SelectNoteCommand}"
                         SelectionChangedCommandParameter="{Binding x:DataType='CollectionView', Source={RelativeSource Self}, Path=SelectedItem}">
-
         <!-- Designate how the collection of items are laid out -->
         <CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
@@ -28,7 +28,7 @@
 
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Note">
+            <DataTemplate x:DataType="viewModels:NoteViewModel">
                 <StackLayout>
                     <Label Text="{Binding Text}" FontSize="22"/>
                     <Label Text="{Binding Date}" FontSize="14" TextColor="Silver"/>
