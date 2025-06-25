@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Notes.Models"
+             x:Class="Notes.Views.AboutPage"
+             x:DataType="models:About">
+    <ContentPage.BindingContext>
+        <models:About />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <HorizontalStackLayout Spacing="10">
+            
+            <Label FontSize="24" FontAttributes="Bold" Text="{Binding Title}" VerticalOptions="End" />
+            
+        </HorizontalStackLayout>
+        <VerticalStackLayout>
+            <Image Source="image_git_profile.jpg" SemanticProperties.Description="Mi imagen de perfil" HeightRequest="128" VerticalOptions="Start"/>
+            <Image Source="cv_foto_funny.jpg" SemanticProperties.Description="Literalmente mi imagen de perfil" HeightRequest="128" VerticalOptions="Start" />
+            <Label FontSize="22" FontAttributes="Bold" Text="Pablo Montalvo, Edad:21 , Carrera: Ingeníera en software, Estado Civil: Divorciado, Sexo: T-800" VerticalOptions="Center"/>
+            <Label FontSize="22" FontAttributes="Bold" Text="https://github.com/P4bl1t0ck" VerticalOptions="Center"/>
+            <Image Source="heavy.jpg" SemanticProperties.Description="Should have post more i guess" HeightRequest="512"  VerticalOptions="Center"/>
+            <Label FontSize="11" Text="{Binding Version}" VerticalOptions="End" />
+        </VerticalStackLayout>
+        
+                
+    </VerticalStackLayout>
+
+</ContentPage>
