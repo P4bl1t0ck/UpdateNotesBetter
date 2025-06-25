@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:Notes.Models"
+             xmlns:viewmodels="clr-namespace:Notes.ViewModels"
              x:Class="Notes.Views.AboutPage"
-             x:DataType="models:About">
+             x:DataType="viewmodels:AboutViewModel">
     <ContentPage.BindingContext>
-        <models:About />
+        <viewModels:AboutViewModel />
     </ContentPage.BindingContext>
+    
     <VerticalStackLayout Spacing="10" Margin="10">
         <HorizontalStackLayout Spacing="10">
             
@@ -20,8 +21,9 @@
             <Label FontSize="22" FontAttributes="Bold" Text="https://github.com/P4bl1t0ck" VerticalOptions="Center"/>
             <Image Source="heavy.jpg" SemanticProperties.Description="Should have post more i guess" HeightRequest="512"  VerticalOptions="Center"/>
             <Label FontSize="11" Text="{Binding Version}" VerticalOptions="End" />
+            
         </VerticalStackLayout>
-        
+        <Button Text="Learn more..."Command="{Binding ShowMoreInfoCommand}"/>
                 
     </VerticalStackLayout>
 
