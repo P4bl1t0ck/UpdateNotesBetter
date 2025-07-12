@@ -1,8 +1,9 @@
 ﻿using MvvmHelpers;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Notes.Models; // Asegúrate de incluir el espacio de nombres correcto
+using Notes.Models;
 
+namespace Notes.ViewModels;
 public class RecordatoriosViewModel : BaseViewModel
 {
     private readonly RecordatorioService _service;

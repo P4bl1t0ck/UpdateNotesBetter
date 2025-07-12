@@ -5,7 +5,7 @@
              Title="Recordatorios">
 
     <ContentPage.BindingContext>
-        <viewmodels:RecordatoriosViewModel />
+        <viewmodels:RecordatoriosViewModel/>
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10">
