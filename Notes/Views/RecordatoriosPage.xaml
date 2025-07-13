@@ -8,26 +8,39 @@
         <viewmodels:RecordatoriosViewModel/>
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="10">
+    <VerticalStackLayout Padding="10" Spacing="10">
         <Button Text="Agregar Recordatorio"
-                Command="{Binding AgregarCommand}" />
+                Command="{Binding AgregarCommand}" 
+                HorizontalOptions="Center"/>
 
         <CollectionView ItemsSource="{Binding Recordatorios}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Editar"
+                                   BackgroundColor="Orange"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCommand}"
+                                   CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Eliminar"
-                                           BackgroundColor="Red"
-                                           Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarCommand}"
-                                           CommandParameter="{Binding .}" />
+                                   BackgroundColor="Red"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarCommand}"
+                                   CommandParameter="{Binding .}"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Texto}" />
-                            <Label Text="{Binding FechaHora, StringFormat='{}{0:hh\\:mm}'}" FontSize="12" />
-                            <Label Text="{Binding Activo}" FontSize="12" />
+
+                        <Grid Padding="15" ColumnDefinitions="*,Auto,Auto">
+                            <Label Text="{Binding Texto}" FontSize="16"/>
+                            <Label Text="{Binding FechaHora, StringFormat='{0:dd/MM HH:mm}'}"
+                           Grid.Column="1" FontSize="14" TextColor="Gray"/>
+                            <Switch IsToggled="{Binding Activo}" 
+                            Grid.Column="2" HorizontalOptions="End"/>
                         </Grid>
                     </SwipeView>
                 </DataTemplate>

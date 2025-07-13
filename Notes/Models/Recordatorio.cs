@@ -14,8 +14,10 @@ namespace Notes.Models
     public class Recordatorio
     {
         public string Texto { get; set; }
-        public TimeSpan FechaHora { get; set; }
+        public DateTime FechaHora { get; set; }
         public bool Activo { get; set; }
-        public static List<Recordatorio> ToList() => new List<Recordatorio>();
+        //Una función que retorne si el recordatorio se encuentra activo (true o false)
+        //y si la fecha y hora del recordatorio es igual o posterior a la fecha y hora actual.
+        public bool DebeActivar() { return Activo && DateTime.Now >= FechaHora; }
     }
 }
