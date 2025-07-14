@@ -6,20 +6,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using WheatherSystem.Models;
+using WheatherSystem.ViewModels;
 
 namespace WheatherSystem.ViewModels
 {
-    class WeatherViewModel
+    public class WeatherViewModel // Changed to 'public' to match accessibility  
     {
         private ObservableCollection<WeatherData> _weatherItems;
-        public ObservableCollection<WeatherData> GetWeatherItems()
-        {
-            return _weatherItems;
-        }
+        public ObservableCollection<WeatherData> GetWeatherItems() => _weatherItems;
 
         public void SetWeatherItems(ObservableCollection<WeatherData> value)
-        { _weatherItems = value; OnPropertyChanged(); }
+        {
+            _weatherItems = value;
+            OnPropertyChanged();
+        }
 
         public WeatherViewModel(ObservableCollection<WeatherData> weatherItems)
         {
@@ -30,7 +30,11 @@ namespace WheatherSystem.ViewModels
         public bool IsLoading
         {
             get => _isLoading;
-            set { _isLoading = value; OnPropertyChanged(); }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
         }
 
         public WeatherViewModel()
@@ -44,7 +48,7 @@ namespace WheatherSystem.ViewModels
             var weatherService = new WeatherService();
             var data = await weatherService.GetWeatherAsync(latitude, longitude);
             GetWeatherItems().Clear();
-            foreach (var item in data)
+            foreach (WeatherData item in data) // Fix: Explicitly cast or ensure the type matches    
             {
                 GetWeatherItems().Add(item);
             }
@@ -55,7 +59,7 @@ namespace WheatherSystem.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string name = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-        private class WeatherData
+        public class WeatherData // Changed to 'public' to match accessibility  
         {
         }
-    }
+    } // Fix: Added missing closing brace for the WeatherViewModel class
